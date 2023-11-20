@@ -8,3 +8,4 @@ transnetv2 (python setup.py/install)
 numpy
 tensorflow
 moviepy
+pandas
