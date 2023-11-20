@@ -1,11 +1,12 @@
 python 3.10
 validators
 yt-dlp
-jq (conda)
+jq
 ffmpeg-python
 pillow
-transnetv2 (python setup.py/install)
+transnetv2
 numpy
 tensorflow
 moviepy
 pandas
+opencv-python
