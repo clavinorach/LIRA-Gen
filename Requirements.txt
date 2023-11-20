@@ -1,0 +1,10 @@
+python 3.10
+validators
+yt-dlp
+jq (conda)
+ffmpeg-python
+pillow
+transnetv2 (python setup.py/install)
+numpy
+tensorflow
+moviepy
