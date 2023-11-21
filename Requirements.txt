@@ -10,3 +10,8 @@ tensorflow
 moviepy
 pandas
 opencv-python
+pytorch
+python_speech_features
+scipy
+scikit-learn
+scenedetect
