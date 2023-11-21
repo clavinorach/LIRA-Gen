@@ -2,6 +2,7 @@ import pathlib
 import os
 import subprocess
 import shutil
+from pathlib import Path
 
 alamatparent = str(pathlib.Path(__file__).parent.resolve())
 alamatinput = os.path.join(alamatparent, "video", "input")
@@ -12,6 +13,9 @@ alamatoutput_shot_info_video = os.path.join(alamatparent, "video", "output_shot_
 
 listdir = os.listdir(alamatinput)
 listchild = len(listdir)
+
+def split_path(path):
+    return [str(part) for part in Path(path).parts]
 
 print("\n---Check parent folder input and output---")
 if os.path.exists(alamatinput)==True:
@@ -182,7 +186,8 @@ while (i<listchild):
                 # os.system("python "+shotfile+" "+sb+" "+str(start)+" "+ str(end)+" "+ osv)
                 subprocess.call(["python", shotfile, sb, str(start), str(end), osv], stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
                 alamatparent = str(pathlib.Path(__file__).parent.resolve())
-                osv = osv.split("/")
+                # osv = osv.split("/")
+                osv = split_path(osv)
                 nameosv=osv[len(osv)-1]
                 nameosv=nameosv.replace(".mp4","")
                 nameosv=os.path.join(alamatparent,nameosv+"TEMP_MPY_wvf_snd.mp3")
