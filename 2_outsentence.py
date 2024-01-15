@@ -71,10 +71,10 @@ while(i<listchild):
 
 print("\n---Process shot---")
 i=0
-listdirfile = os.listdir(os.path.join(alamatinput,str(listdir[i])))
-totalfile = len(listdirfile)
 while (i<listchild):
     print("-"+listdir[i]+"-")
+    listdirfile = os.listdir(os.path.join(alamatinput,str(listdir[i])))
+    totalfile = len(listdirfile)
     j=0
     while(j<totalfile):
         temp=listdirfile[j].replace(".mp4","")
@@ -139,6 +139,8 @@ while (i<listchild):
             startsub,endsub=0,0
             startfix, endfix, tempend = 0, 0, 0
             while (counter_subt<len(datasubt)):
+                # print("inside while counter subt")
+                # print(str(counter_subt)+"/"+str(len(datasubt)), end='\r')
                 sentence = datasubt[counter_subt]
                 if word in sentence:
                     textlama = datasubt[counter_subt].replace("\n","")
@@ -164,6 +166,7 @@ while (i<listchild):
                             else:
                                 line2 = counter_subt-1
                             endfix = tempend
+                            # print("\n")
                             break
                 counter_subt = counter_subt+1
             if endfix==0:
@@ -180,6 +183,7 @@ while (i<listchild):
                     control = 0
                 else:
                     control = 1
+            
             if control==1:
                 osv = os.path.join(alamatoutput_shot_video,str(listdir[i]),temp,temp+"_"+str(k+1)+".mp4")
                 shotfile = os.path.join(alamatparent,"2_1_shot.py")
@@ -192,7 +196,8 @@ while (i<listchild):
                 nameosv=nameosv.replace(".mp4","")
                 nameosv=os.path.join(alamatparent,nameosv+"TEMP_MPY_wvf_snd.mp3")
                 if os.path.exists(nameosv)==True:
-                    os.system("rm "+nameosv)
+                    # os.system("rm "+nameosv)
+                    os.remove(nameosv)
                 if os.path.exists(os.path.join(alamatoutput_shot_info_video,str(listdir[i]),temp))==True:
                     pass
                 else:
@@ -201,6 +206,7 @@ while (i<listchild):
                 f = open(osubt,"w")
                 linenumber = line1
                 while(1):
+                    # print("inside while counter linenumber")
                     linenumber=linenumber+1
                     if linenumber>line2:
                         if linenumber<len(datasubt):
@@ -209,9 +215,11 @@ while (i<listchild):
                             break
                         if datasubt[linenumber]=="\n":
                             break
-                        
+
                     f.write(datasubt[linenumber-1])
+                # print("\n")
                 f.close()
 
         j = j+1
     i = i+1
+    # break

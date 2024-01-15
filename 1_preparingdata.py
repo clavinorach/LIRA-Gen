@@ -43,18 +43,21 @@ def modifiedsrt():
     while(i<len(dataline)):
         arr.append(dataline[i])
         if word in dataline[i]:
-            if dataline[i+1]==compare:
-                try:
-                    compare = dataline[i+2]
-                except IndexError as e:
-                    pass
-                i = i+1
-            elif dataline[i+1]=="\n":
-                try:
-                    compare = dataline[i+2]
-                except IndexError as e:
-                    pass
-                i = i+1
+            try:
+                if dataline[i+1]==compare:
+                    try:
+                        compare = dataline[i+2]
+                    except IndexError as e:
+                        pass
+                    i = i+1
+                elif dataline[i+1]=="\n":
+                    try:
+                        compare = dataline[i+2]
+                    except IndexError as e:
+                        pass
+                    i = i+1
+            except IndexError as e:
+                pass
         i = i+1
     dataline = arr
 
@@ -113,6 +116,7 @@ def downloadvideo(output,lang):
 
     for i in range(0, len(output)):
         tempstr = "yt-dlp "+str(output[i])+" -S ext:mp4:m4a -o video.mp4 --socket-timeout 1 -4 --sub-lang "+lang+" --write-auto-sub --convert-subs srt --match-filter" 
+        # tempstr = "yt-dlp "+str(output[i])+" -S ext:mp4:m4a -o video.mp4 --socket-timeout 1 -4 --sub-lang "+lang+" --write-auto-sub --convert-subs srt --dateafter today-6month --match-filter" 
         # subprocess.call(listtemp, stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
         listtemp = ['yt-dlp', '--rm-cache-dir']
         # subprocess.call(listtemp, stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
