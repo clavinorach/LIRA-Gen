@@ -1,5 +1,4 @@
-# LIRA-Gen
-Lipreading Information Resource Assembler-Generator
+# Lipreading Information Resource Assembler-Generator (LIRA-Gen)
 LIRA-Gen is an end-to-end pipeline tool for generating lipreading datasets (one-second-per-word video) from YouTube videos with Creative Commons BY licenses.
 
 ## Overview
