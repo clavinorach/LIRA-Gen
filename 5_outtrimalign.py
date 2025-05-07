@@ -2,13 +2,15 @@ import pathlib
 import os
 import subprocess
 import math
-from moviepy.editor import VideoFileClip, AudioFileClip, CompositeAudioClip
-import moviepy.editor as mp
+# from moviepy.editor import VideoFileClip, AudioFileClip, CompositeAudioClip
+# import moviepy.editor as mp
+from moviepy import VideoFileClip, AudioFileClip, CompositeAudioClip
+import moviepy as mp
 import moviepy
 import csv
 import pandas as pd
 import cv2
-from moviepy.video.fx.all import speedx
+# from moviepy.video.fx.all import speedx
 
 # MIN_FREQ = 10
 
@@ -140,7 +142,7 @@ while (i<listchild):
                         t1_fix=0
                         t2_fix=0
                         check_video = VideoFileClip(vidname)
-                        check_frame_rate = check_video.fps
+                        check_frame_rate = int(round(check_video.fps))
                         calc_duration = 1
                         # calc_duration = check_frame_rate / check_frame_rate
                         if t2-t1<=calc_duration:
