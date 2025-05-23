@@ -2,8 +2,8 @@ import pathlib
 import os
 import subprocess
 import math
-from moviepy.editor import VideoFileClip, AudioFileClip, CompositeAudioClip
-import moviepy.editor as mp
+# from moviepy.editor import VideoFileClip, AudioFileClip, CompositeAudioClip
+# import moviepy.editor as mp
 import moviepy
 
 alamatparent = str(pathlib.Path(__file__).parent.resolve())
