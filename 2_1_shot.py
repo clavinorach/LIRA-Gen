@@ -1,4 +1,4 @@
-from moviepy.editor import *
+from moviepy import *
 import sys
 import pathlib
 import os

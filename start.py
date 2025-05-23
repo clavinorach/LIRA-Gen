@@ -14,24 +14,11 @@ print("Stage (6) Out Word")
 print("Stage (7) Word CSV Processing")
 print("Stage (8) Face Dict")
 
-	# ├── video
-	# │   ├── input (Video input)
-	# │   ├── inputalign (Forced alignment result)
-	# │   ├── inputsubt (Transcription input)
-	# │   ├── output_align_input (Output for input of forced alignment process)
-	# │   ├── output_crop (Output cropping video)
-	# │   ├── output_shot (Output shot predictions)
-	# │   ├── output_shot_info_video (Output sentence per shot)
-	# │   ├── output_shot_video (Output shot trimming video)
-	# │   └── output_trim_align  (Outpyut trimming video based on alignment result)
-
-
 alamatparent = str(pathlib.Path(__file__).parent.resolve())
 
 parser = argparse.ArgumentParser(description = "End-to-End Lipreading Generator")
 
 parser.add_argument('--videoPlaylist',         type=str, default="off",   help='Youtube playlist link')
-
 parser.add_argument('--wordFrequency',         type=int, default="10",   help='Minimum frequency of word')
 parser.add_argument('--lang',                  type=str, default="id",   help='Language')
 parser.add_argument('--dictionary',            type=str, default="indonesian_words.txt",   help='Path for language dictionary')
@@ -43,66 +30,56 @@ args = parser.parse_args()
 def stage1():
     print("Preparing data (-)", end='\r')
     if args.videoPlaylist!="off":
+        # Modified: Using os.system instead of subprocess to see errors
         os.system("python 1_preparingdata.py "+args.videoPlaylist+" "+args.lang)
-    # subprocess.call(["python", "1_preparingdata.py", args.videoPlaylist, args.lang], stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
         print("Preparing data ("+u'\u2713'+")")
     else:
         print("Preparing data ("+u'\u2713'+")")
 
 def stage2():
     print("Sentence processing (-)", end='\r')
-    # os.system("python 2_outsentence.py")
-    subprocess.call(["python", "2_outsentence.py"], stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
+    # Modified: Using os.system instead of subprocess to see errors
+    os.system("python 2_outsentence.py")
     print("Sentence processing ("+u'\u2713'+")")
 
 def stage3():
     print("Align processing (-)", end='\r')
-    # os.system("python 3_outalign.py")
-    subprocess.call(["python", "3_outalign.py"], stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
+    # Modified: Using os.system instead of subprocess to see errors
+    os.system("python 3_outalign.py")
     print("Align processing ("+u'\u2713'+")")
 
 def stage4():
     print("Word filtering (-)", end='\r')
-    subprocess.call(["python", "4_wordfiltered.py", str(args.wordFrequency), args.dictionary], stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
+    # Modified: Using os.system instead of subprocess to see errors
+    os.system(f"python 4_wordfiltered.py {args.wordFrequency} {args.dictionary}")
     print("Word filtering ("+u'\u2713'+")")
 
 def stage5():
     print("Word trimming (-)", end='\r')
-    subprocess.call(["python", "5_outtrimalign.py"], stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
+    # Modified: Using os.system instead of subprocess to see errors
+    os.system("python 5_outtrimalign.py")
     print("Word trimming ("+u'\u2713'+")")
 
 def stage6():
     print("Face cropping (-)", end='\r')
+    # Already using os.system
     os.system("python 6_outwordtrim.py")
-    # subprocess.call(["python", "6_outwordtrim.py"], stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
     print("Face cropping ("+u'\u2713'+")")
 
 def stage7():
     print("Csv data (-)", end='\r')
-    subprocess.call(["python", "7_outwordcsv.py"], stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
+    # Modified: Using os.system instead of subprocess to see errors
+    os.system("python 7_outwordcsv.py")
     print("Csv data ("+u'\u2713'+")")
 
 def stage8():
     print("Out word (-)", end='\r')
-    subprocess.call(["python", "8_facerecog.py"], stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
+    # Modified: Using os.system instead of subprocess to see errors
+    os.system("python 8_facerecog.py")
     print("Out word ("+u'\u2713'+")")
 
 # Main function
 def main():
-	# Default location .
-	# ```
-	# .
-	# ├── video
-	# │   ├── input (Video input)
-	# │   ├── inputalign (Forced alignment result)
-	# │   ├── inputsubt (Transcription input)
-	# │   ├── output_align_input (Output for input of forced alignment process)
-	# │   ├── output_crop (Output cropping video)
-	# │   ├── output_shot (Output shot predictions)
-	# │   ├── output_shot_info_video (Output sentence per shot)
-	# │   ├── output_shot_video (Output shot trimming video)
-	# │   └── output_trim_align  (Outpyut trimming video based on alignment result)
-	# ```
     if os.path.exists(os.path.join(alamatparent, "video"))==True:
         pass
     else:

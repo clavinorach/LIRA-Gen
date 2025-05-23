@@ -187,8 +187,8 @@ while (i<listchild):
             if control==1:
                 osv = os.path.join(alamatoutput_shot_video,str(listdir[i]),temp,temp+"_"+str(k+1)+".mp4")
                 shotfile = os.path.join(alamatparent,"2_1_shot.py")
-                # os.system("python "+shotfile+" "+sb+" "+str(start)+" "+ str(end)+" "+ osv)
-                subprocess.call(["python", shotfile, sb, str(start), str(end), osv], stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
+                os.system("python "+shotfile+" "+sb+" "+str(start)+" "+ str(end)+" "+ osv)
+                # subprocess.call(["python", shotfile, sb, str(start), str(end), osv], stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT)
                 alamatparent = str(pathlib.Path(__file__).parent.resolve())
                 # osv = osv.split("/")
                 osv = split_path(osv)

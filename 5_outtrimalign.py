@@ -2,7 +2,8 @@ import pathlib
 import os
 import subprocess
 import math
-from moviepy.editor import VideoFileClip, AudioFileClip, CompositeAudioClip
+from moviepy import *
+from moviepy.video.io.VideoFileClip import VideoFileClip
 import moviepy.editor as mp
 import moviepy
 import csv
